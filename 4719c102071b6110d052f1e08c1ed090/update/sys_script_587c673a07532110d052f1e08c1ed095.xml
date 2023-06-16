@@ -15,13 +15,13 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="incident">category=inquiry^EQ<item display_value="Inquiry / Help" endquery="false" field="category" goto="false" newquery="false" operator="=" or="false" value="inquiry"/>
+        <filter_condition table="incident">state=3^EQ<item display_value="On Hold" endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="3"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Incident_not_submit_category_InquiryHelp</name>
-        <order>100</order>
+        <name>Create_Problem_When_incident_Onhold</name>
+        <order>250</order>
         <priority>100</priority>
         <rest_method/>
         <rest_method_text/>
@@ -29,28 +29,35 @@
         <rest_service_text/>
         <rest_variables/>
         <role_conditions/>
-        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+        <script><![CDATA[(function executeRule(current, previous) {
 
-	// Add your code here
-
+    if (current.state == '3') { 
+        var problem = new GlideRecord('problem');
+        problem.initialize();
+        problem.short_description =  'short description' + current.number;
+        problem.description = 'description' + current.number;
+        problem.insert();
+// 		current.problem_id = current.sys_id;
+//         current.update();
+    }
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2023-06-09 12:36:55</sys_created_on>
+        <sys_created_on>2023-06-12 07:50:32</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>8cd1998e071b6110d052f1e08c1ed008</sys_id>
-        <sys_mod_count>1</sys_mod_count>
-        <sys_name>Incident_not_submit_category_InquiryHelp</sys_name>
+        <sys_id>587c673a07532110d052f1e08c1ed095</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>Create_Problem_When_incident_Onhold</sys_name>
         <sys_overrides/>
         <sys_package display_value="Project_2" source="x_1028526_project">4719c102071b6110d052f1e08c1ed090</sys_package>
         <sys_policy/>
         <sys_scope display_value="Project_2">4719c102071b6110d052f1e08c1ed090</sys_scope>
-        <sys_update_name>sys_script_8cd1998e071b6110d052f1e08c1ed008</sys_update_name>
+        <sys_update_name>sys_script_587c673a07532110d052f1e08c1ed095</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2023-06-09 12:47:16</sys_updated_on>
+        <sys_updated_on>2023-06-16 08:12:55</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=8cd1998e071b6110d052f1e08c1ed008"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=587c673a07532110d052f1e08c1ed095"/>
 </record_update>

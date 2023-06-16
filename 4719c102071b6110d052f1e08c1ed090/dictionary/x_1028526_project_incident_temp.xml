@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="5b2e045c07632110d052f1e08c1ed00b" label="incident_temp" max_length="40" name="x_1028526_project_incident_temp" type="collection">
+        <element label="Incident_number" max_length="40" name="incident_number" type="string"/>
+        <element label="Short description" max_length="40" name="short_description" type="string"/>
+    </element>
+</database>
